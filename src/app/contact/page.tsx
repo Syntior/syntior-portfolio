@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight, Mail, Phone } from "lucide-react";
 import { Section } from "@/components/layout/section";
 import { PageHeader } from "@/components/layout/page-header";
 import { ContactForm } from "@/components/forms/contact-form";
@@ -9,7 +9,7 @@ import { site } from "@/lib/site";
 export const metadata = pageMetadata({
   title: "Contact",
   description:
-    "Get in touch with Syntior. Start a project, ask about our work, or find us on GitHub and by email.",
+    "Get in touch with Syntior. Schedule a call, ask about our work, or reach us by phone and email.",
   path: "/contact",
 });
 
@@ -37,24 +37,38 @@ export default function ContactPage() {
           <aside aria-labelledby="elsewhere-heading" className="lg:pt-1">
             <h2
               id="elsewhere-heading"
-              className="font-mono text-xs font-medium tracking-wider text-primary uppercase"
+              className="font-brand text-sm font-semibold tracking-[0.14em] text-muted-foreground uppercase sm:text-base"
             >
               Elsewhere
             </h2>
 
             <ul role="list" className="mt-6 space-y-3">
-
               <li>
-                <a href={`mailto:${site.email}`} className={linkClass}>
-                  <Mail className="size-6 shrink-0" aria-hidden="true" />
+                <a href={site.phone.href} className={linkClass}>
+                  <Phone className="size-6 shrink-0" aria-hidden="true" />
                   <span className="min-w-0 flex-1">
-                    <span className="block font-medium">Email</span>
-                    <span className="block truncate font-mono text-xs text-muted-foreground">
-                      {site.email}
+                    <span className="block font-medium">Phone</span>
+                    <span className="block truncate text-sm text-muted-foreground">
+                      {site.phone.display}
                     </span>
                   </span>
                 </a>
               </li>
+
+              {/* Shown once a real address is set (NEXT_PUBLIC_CONTACT_EMAIL). */}
+              {site.emailIsPlaceholder ? null : (
+                <li>
+                  <a href={`mailto:${site.email}`} className={linkClass}>
+                    <Mail className="size-6 shrink-0" aria-hidden="true" />
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-medium">Email</span>
+                      <span className="block truncate text-sm text-muted-foreground">
+                        {site.email}
+                      </span>
+                    </span>
+                  </a>
+                </li>
+              )}
 
               {site.socials.map((social) => {
                 const Icon = socialIcons[social.label];
@@ -81,14 +95,6 @@ export default function ContactPage() {
               })}
             </ul>
 
-            {site.emailIsPlaceholder ? (
-              <p className="mt-4 rounded-lg border border-dashed border-border p-3 text-xs leading-relaxed text-muted-foreground">
-                <span className="font-medium text-foreground">Placeholder:</span>{" "}
-                this email address is not real yet. Set{" "}
-                <code className="font-mono">NEXT_PUBLIC_CONTACT_EMAIL</code> to
-                replace it.
-              </p>
-            ) : null}
           </aside>
         </div>
       </Section>

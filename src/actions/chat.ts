@@ -3,7 +3,7 @@
 import { checkSubmission } from "@/lib/form-guards";
 import { sendNotification } from "@/lib/email";
 import { contactMessageEmail } from "@/lib/email-templates";
-import { site } from "@/lib/site";
+import { reachUs } from "@/lib/site";
 import { contactSchema, readFields } from "@/lib/validation";
 
 const FIELDS = ["name", "email", "subject", "message"] as const;
@@ -37,7 +37,7 @@ export async function sendChatLead(formData: FormData): Promise<ChatLeadResult> 
   if (!sent.ok) {
     return {
       ok: false,
-      message: `I could not send that just now. Please try again in a few minutes, or email us at ${site.email}.`,
+      message: `I could not send that just now. Please try again in a few minutes, or ${reachUs}.`,
     };
   }
 

@@ -38,7 +38,7 @@ export function Logo({ className }: { className?: string }) {
       href="/"
       aria-label={`${site.name} home`}
       className={cn(
-        "inline-flex items-center gap-2.5 rounded-md font-brand text-3xl leading-none font-semibold tracking-tight text-primary sm:text-4xl",
+        "inline-flex items-center gap-2.5 rounded-md font-logo text-3xl leading-none font-semibold tracking-tight text-primary sm:text-4xl",
         className,
       )}
     >

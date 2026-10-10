@@ -20,6 +20,8 @@ export type Service = {
   title: string;
   description: string;
   icon: LucideIcon;
+  /** The catalog service whose page this card links to. */
+  page: string;
 };
 
 /**
@@ -49,36 +51,42 @@ export const services: Service[] = [
     description:
       "Custom web apps built with React, Next.js and TypeScript, from the first release through ongoing development.",
     icon: CodeXml,
+    page: "Web Development",
   },
   {
     title: "Product development",
     description:
       "Take an idea from scope to a working product, then keep improving it once it is live.",
     icon: Rocket,
+    page: "SaaS Development",
   },
   {
     title: "UI and front-end",
     description:
       "Fast, accessible, responsive interfaces that work on every screen size.",
     icon: LayoutTemplate,
+    page: "Front-end Development",
   },
   {
     title: "APIs and back-end",
     description:
       "Databases, APIs and integrations that are typed, tested and easy to maintain.",
     icon: Server,
+    page: "Back-end Development",
   },
   {
     title: "DevOps and deployment",
     description:
       "CI/CD pipelines, Docker and cloud deployment, so releases are routine rather than risky.",
     icon: Cloud,
+    page: "DevOps",
   },
   {
     title: "Maintenance and support",
     description:
       "Updates, fixes and improvements for software that is already in production.",
     icon: LifeBuoy,
+    page: "Maintenance & Support",
   },
 ];
 
@@ -86,7 +94,8 @@ export type ServiceGroup = { title: string; items: string[] };
 
 /**
  * The full list of services, shown on /services under "Everything we do" and
- * in the Services mega menu. Each item gets an anchor via `serviceAnchor`.
+ * in the Services mega menu. Each one has its own page at /services/<slug>
+ * (slug from `serviceAnchor`), with content from data/service-details.ts.
  */
 export const serviceCatalog: ServiceGroup[] = [
   {
@@ -121,6 +130,7 @@ export const serviceCatalog: ServiceGroup[] = [
       "DevOps",
       "Digital Transformation",
       "ERP Development",
+      "Maintenance & Support",
     ],
   },
 ];
@@ -201,3 +211,15 @@ export type Role = {
  * empty the page says so and offers a way to get in touch instead.
  */
 export const roles: Role[] = [];
+
+/** Every service that has its own page, in catalog order. */
+export const serviceNames = serviceCatalog.flatMap((group) => group.items);
+
+/** URL of a service's page, e.g. "/services/back-end-development". */
+export function serviceHref(name: string) {
+  return `/services/${serviceAnchor(name)}`;
+}
+
+export function getServiceName(slug: string) {
+  return serviceNames.find((name) => serviceAnchor(name) === slug);
+}

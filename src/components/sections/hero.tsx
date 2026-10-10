@@ -4,64 +4,65 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
-import heroErp from "../../../public/images/hero-erp.webp";
+import { TypedIndustries } from "@/components/sections/typed-industries";
+import office1 from "../../../public/images/hero-bg/office-1.webp";
+import office2 from "../../../public/images/hero-bg/office-2.webp";
+import office3 from "../../../public/images/hero-bg/office-3.webp";
+import office4 from "../../../public/images/hero-bg/office-4.webp";
 
 /*
- * Copy on the left, an ERP dashboard illustration on the right. On phones and
- * tablets the copy is centred and the illustration sits below it.
- *
- * The illustration (public/images/hero-erp.webp) is original artwork with
- * sample figures, not a real customer's data.
+ * Background photos: software teams at work, from Unsplash (free for
+ * commercial use under the Unsplash License). They are blurred and
+ * compressed ahead of time (sharp, blur 4, WebP), so the browser does no
+ * blurring work. Each shows for 5 seconds, then crossfades to the next.
+ */
+const slides = [office1, office2, office3, office4];
+
+/*
+ * A simple, centred hero: headline, one supporting line and a single call to
+ * action, over blurred photos of software teams that change every 5 seconds.
  */
 export function Hero() {
   return (
-    <section
-      aria-labelledby="hero-heading"
-      className="bg-hero relative overflow-hidden border-b border-border"
-    >
-      <Container className="relative grid items-center gap-10 py-12 sm:gap-14 sm:py-20 md:py-24 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-10 lg:py-28 xl:gap-16">
+    <section aria-labelledby="hero-heading" className="relative isolate overflow-hidden border-b border-border bg-background">
+      {/* Background: the photos, then a white wash so the dark text reads clearly. */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10">
+        {slides.map((src, i) => (
+          <Image
+            key={i}
+            src={src}
+            alt=""
+            fill
+            priority={i === 0}
+            sizes="100vw"
+            className={i === 0 ? "object-cover" : "hero-slide object-cover"}
+            style={i === 0 ? undefined : { animationDelay: `${i * 5}s` }}
+          />
+        ))}
+        <div className="absolute inset-0 bg-white/70" />
+      </div>
+      <Container className="relative z-10 py-20 text-center sm:py-28 lg:py-36">
         <Reveal immediate>
-          {/* Centred on phones and tablets; left-aligned beside the illustration on desktop. */}
-          <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
-            <h1
-              id="hero-heading"
-              className="font-brand text-[2rem] leading-[1.15] font-medium tracking-tight text-balance sm:text-5xl sm:leading-[1.08] lg:text-[3.25rem] xl:text-6xl"
-            >
-              Turn your roadmap into{" "}
-              <span className="text-primary">production-ready software.</span>
-            </h1>
-            <p className="mx-auto mt-5 max-w-xl font-brand text-[1.0625rem] leading-relaxed text-muted-foreground sm:mt-8 sm:text-xl lg:mx-0">
-              Syntior designs, builds and runs{" "}
-              <strong className="font-semibold text-foreground">
-                web applications and products
-              </strong>{" "}
-              for our clients and for ourselves, held to{" "}
-              <strong className="font-semibold text-foreground">
-                production standards
-              </strong>{" "}
-              from the first commit.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3 sm:mt-10 sm:gap-4 lg:justify-start">
-              <Button asChild size="lg" className="font-brand">
-                <Link href="/contact">
-                  Start a project
-                  <ArrowRight aria-hidden="true" data-icon="inline-end" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="font-brand">
-                <Link href="/services">Our services</Link>
-              </Button>
-            </div>
+          <h1
+            id="hero-heading"
+            className="mx-auto max-w-4xl font-brand text-[2rem] leading-[1.15] font-medium tracking-tight text-balance sm:text-5xl sm:leading-[1.12] lg:text-6xl"
+          >
+            Turn your roadmap into production-ready software.
+          </h1>
+          <p className="mx-auto mt-5 max-w-3xl font-brand text-lg leading-relaxed font-normal text-black sm:mt-6 sm:text-xl">
+            Delivering project success no matter what the challenge, from the first sprint to the
+            final release.
+          </p>
+          <TypedIndustries />
+          <div className="mt-8 flex justify-center sm:mt-10">
+            <Button asChild size="lg" className="font-brand">
+              <Link href="/contact">
+                Schedule a call
+                <ArrowRight aria-hidden="true" data-icon="inline-end" />
+              </Link>
+            </Button>
           </div>
         </Reveal>
-
-        <Image
-          src={heroErp}
-          alt="An ERP dashboard showing revenue, orders, inventory and recent orders, with modules for finance, sales, inventory and HR."
-          priority
-          sizes="(min-width: 1024px) 55vw, 100vw"
-          className="mx-auto w-full max-w-2xl lg:max-w-none xl:w-[110%] 2xl:w-[120%]"
-        />
       </Container>
     </section>
   );

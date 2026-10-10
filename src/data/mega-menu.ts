@@ -1,4 +1,4 @@
-import { serviceAnchor, serviceCatalog } from "@/data/company";
+import { serviceCatalog, serviceHref } from "@/data/company";
 import { technologies, technologySlug } from "@/data/technologies";
 import { joinHref, site, type NavItem } from "@/lib/site";
 
@@ -27,7 +27,7 @@ export const megaMenu: Record<string, MegaMenuPanel> = {
       title: group.title,
       cols: group.items.length > 8 ? 2 : 1,
       links: group.items.map((item) => ({
-        href: `/services#${serviceAnchor(item)}`,
+        href: serviceHref(item),
         label: item,
       })),
     })),
@@ -78,7 +78,6 @@ export const megaMenu: Record<string, MegaMenuPanel> = {
         title: "Get involved",
         links: [
           { href: joinHref, label: "Apply to join" },
-          { href: "/community#members", label: "Members" },
         ],
       },
       {

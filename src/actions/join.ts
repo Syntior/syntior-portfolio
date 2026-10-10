@@ -3,7 +3,7 @@
 import { checkSubmission } from "@/lib/form-guards";
 import { sendNotification } from "@/lib/email";
 import { joinApplicationEmail } from "@/lib/email-templates";
-import { site } from "@/lib/site";
+import { reachUs } from "@/lib/site";
 import {
   joinSchema,
   readFields,
@@ -56,7 +56,7 @@ export async function submitJoinApplication(
   if (!sent.ok) {
     return {
       status: "error",
-      message: `We could not send your application just now. Please try again in a few minutes, or email us at ${site.email}.`,
+      message: `We could not send your application just now. Please try again in a few minutes, or ${reachUs}.`,
       values,
     };
   }

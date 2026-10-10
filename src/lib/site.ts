@@ -94,6 +94,14 @@ export const site = {
   socials: resolveSocials(),
 } as const;
 
+/**
+ * How to reach us when a form fails, for error messages: the email once a
+ * real one is set, the phone number until then.
+ */
+export const reachUs = site.emailIsPlaceholder
+  ? `call us on ${site.phone.display}`
+  : `email us at ${site.email}`;
+
 export type NavItem = { href: string; label: string };
 
 /**
@@ -131,7 +139,6 @@ export const footerNav: { title: string; links: NavItem[] }[] = [
       { href: "/community", label: site.community.name },
       { href: joinHref, label: "Join the community" },
       { href: "/community/how-it-works", label: "How it works" },
-      { href: "/community#members", label: "Members" },
     ],
   },
 ];
@@ -151,4 +158,5 @@ export const routes: { path: string; priority: number }[] = [
   { path: "/updates", priority: 0.5 },
   { path: "/community", priority: 0.7 },
   { path: "/community/how-it-works", priority: 0.6 },
+  { path: "/cookies", priority: 0.2 },
 ];

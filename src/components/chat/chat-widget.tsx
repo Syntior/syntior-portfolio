@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, Home, MessageSquare, SendHorizontal, X } from "lucide-react";
 import { sendChatLead } from "@/actions/chat";
 import { LogoMark } from "@/components/brand/logo";
-import { joinHref, site } from "@/lib/site";
+import { joinHref, reachUs, site } from "@/lib/site";
 import { contactSchema } from "@/lib/validation";
 import { cn } from "@/lib/utils";
 
@@ -269,7 +269,7 @@ export function ChatWidget() {
       } catch {
         result = {
           ok: false,
-          message: `Something went wrong. Please try again, or email us at ${site.email}.`,
+          message: `Something went wrong. Please try again, or ${reachUs}.`,
         };
       }
       setTyping(false);

@@ -6,21 +6,19 @@ import { PageHeader } from "@/components/layout/page-header";
 import { JoinForm } from "@/components/forms/join-form";
 import { FaqList } from "@/components/sections/faq-list";
 import { LevelsOverview } from "@/components/sections/levels-overview";
-import { MembersGallery } from "@/components/sections/members-gallery";
 import { StatsStrip } from "@/components/sections/stats-strip";
 import { FeatureCard } from "@/components/cards/feature-card";
 import { Reveal } from "@/components/motion/reveal";
 import { benefits, expectations } from "@/data/community";
 import { communityStats } from "@/data/community-stats";
 import { joinFaq } from "@/data/faq";
-import { members } from "@/data/members";
 import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Syntior Community",
   description:
-    "Syntior Community is the developer community of Syntior. Apply to become a contributor, meet the members, and see what contributors get and what we expect in return.",
+    "Syntior Community is the developer community of Syntior. Apply to become a contributor and see what contributors get and what we expect in return.",
   path: "/community",
 });
 
@@ -101,18 +99,6 @@ export default function CommunityPage() {
               <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </aside>
-        </div>
-      </Section>
-
-      <Section aria-labelledby="members-heading" bordered>
-        <div id="members">
-          <SectionHeading
-            id="members-heading"
-            eyebrow="Meet the community"
-            title="The people behind the projects"
-            description="Community members at every level, working on real projects together."
-          />
-          <MembersGallery members={members} />
         </div>
       </Section>
 

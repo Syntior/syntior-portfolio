@@ -5,6 +5,7 @@ import { MotionProvider } from "@/components/motion/motion-provider";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { ChatWidget } from "@/components/chat/chat-widget";
+import { CookieBanner } from "@/components/consent/cookie-banner";
 import { site } from "@/lib/site";
 
 /*
@@ -106,6 +107,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </main>
           <SiteFooter />
           <ChatWidget />
+          <CookieBanner />
         </MotionProvider>
       </body>
     </html>

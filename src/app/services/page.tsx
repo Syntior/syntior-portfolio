@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { PageHeader } from "@/components/layout/page-header";
@@ -8,6 +9,7 @@ import {
   processSteps,
   serviceAnchor,
   serviceCatalog,
+  serviceHref,
   services,
 } from "@/data/company";
 import { cn } from "@/lib/utils";
@@ -37,7 +39,7 @@ export default function ServicesPage() {
           {services.map((service, index) => (
             <li key={service.title} id={serviceAnchor(service.title)}>
               <Reveal delay={(index % 3) * 0.08} className="h-full">
-                <FeatureCard {...service} />
+                <FeatureCard {...service} href={serviceHref(service.page)} />
               </Reveal>
             </li>
           ))}
@@ -69,9 +71,14 @@ export default function ServicesPage() {
                   <li
                     key={item}
                     id={serviceAnchor(item)}
-                    className="scroll-mt-28 text-[0.9375rem] leading-snug font-medium target:text-primary sm:text-lg"
+                    className="scroll-mt-28 text-[0.9375rem] leading-snug font-medium sm:text-lg"
                   >
-                    {item}
+                    <Link
+                      href={serviceHref(item)}
+                      className="-my-1 inline-block rounded-sm py-1 transition-colors hover:text-primary"
+                    >
+                      {item}
+                    </Link>
                   </li>
                 ))}
               </ul>

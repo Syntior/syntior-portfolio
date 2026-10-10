@@ -3,7 +3,7 @@
 import { checkSubmission } from "@/lib/form-guards";
 import { sendNotification } from "@/lib/email";
 import { contactMessageEmail } from "@/lib/email-templates";
-import { site } from "@/lib/site";
+import { reachUs } from "@/lib/site";
 import {
   contactSchema,
   readFields,
@@ -50,7 +50,7 @@ export async function submitContactMessage(
   if (!sent.ok) {
     return {
       status: "error",
-      message: `We could not send your message just now. Please try again in a few minutes, or email us at ${site.email}.`,
+      message: `We could not send your message just now. Please try again in a few minutes, or ${reachUs}.`,
       values,
     };
   }

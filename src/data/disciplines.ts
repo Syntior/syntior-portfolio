@@ -19,6 +19,8 @@ export type Discipline = {
   /** Background of the icon tile. A strong colour; the icon is white on it. */
   color: string;
   tags: string[];
+  /** The service page the card title links to (a name from serviceCatalog). */
+  service: string;
 };
 
 export const disciplines: Discipline[] = [
@@ -29,6 +31,7 @@ export const disciplines: Discipline[] = [
     icon: AppWindow,
     color: "#ea580c",
     tags: ["React", "Next.js", "TypeScript", "JavaScript", "Angular", "Vue.js"],
+    service: "Front-end Development",
   },
   {
     title: "Back-end development",
@@ -37,6 +40,7 @@ export const disciplines: Discipline[] = [
     icon: DatabaseZap,
     color: "#1f2937",
     tags: ["Node.js", "NestJS", "Python", ".NET", "Java", "Golang", "PHP"],
+    service: "Back-end Development",
   },
   {
     title: "AI and machine learning",
@@ -45,6 +49,7 @@ export const disciplines: Discipline[] = [
     icon: Sparkles,
     color: "#1e3a8a",
     tags: ["AI", "Machine Learning", "Python", "LLMs"],
+    service: "AI Development",
   },
   {
     title: "Mobile development",
@@ -53,6 +58,7 @@ export const disciplines: Discipline[] = [
     icon: Smartphone,
     color: "#1d4ed8",
     tags: ["Kotlin", "Xamarin", "iOS", "Android"],
+    service: "Mobile App Development",
   },
   {
     title: "UX/UI design",
@@ -61,6 +67,7 @@ export const disciplines: Discipline[] = [
     icon: LayoutTemplate,
     color: "#0f766e",
     tags: ["UX design", "UI design", "Design systems"],
+    service: "UX/UI Design",
   },
   {
     title: "QA and testing",
@@ -69,5 +76,6 @@ export const disciplines: Discipline[] = [
     icon: CheckCheck,
     color: "#15803d",
     tags: ["Automated testing", "CI/CD", "Quality assurance"],
+    service: "QA Testing & Automation",
   },
 ];

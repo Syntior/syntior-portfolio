@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
+import { serviceHref } from "@/data/company";
 import { disciplines } from "@/data/disciplines";
 import { technologies, technologySlug } from "@/data/technologies";
 
@@ -58,7 +59,16 @@ export function DisciplinesGrid() {
                       <Icon className="size-7 sm:size-8" strokeWidth={1.75} />
                     </span>
                     <h3 className="mt-6 font-brand text-2xl leading-tight font-medium tracking-tight sm:mt-8 sm:text-3xl">
-                      {discipline.title}
+                      <Link
+                        href={serviceHref(discipline.service)}
+                        className="group inline-flex items-center gap-2 rounded-sm transition-colors hover:text-primary"
+                      >
+                        {discipline.title}
+                        <ArrowRight
+                          aria-hidden="true"
+                          className="size-5 shrink-0 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100 sm:size-6"
+                        />
+                      </Link>
                     </h3>
                     <p className="mt-3 font-brand text-base leading-relaxed text-foreground/80 sm:text-lg">
                       {discipline.description}

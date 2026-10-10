@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { routes, site } from "@/lib/site";
 import { getAllUpdates } from "@/lib/updates";
 import { technologies, technologySlug } from "@/data/technologies";
+import { serviceHref, serviceNames } from "@/data/company";
 
 const absolute = (path: string) => new URL(path, site.url).toString();
 
@@ -12,6 +13,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...routes.map(({ path, priority }) => ({
       url: absolute(path),
       priority,
+    })),
+    ...serviceNames.map((name) => ({
+      url: absolute(serviceHref(name)),
+      priority: 0.7,
     })),
     ...technologies.map((technology) => ({
       url: absolute(`/technologies/${technologySlug(technology)}`),

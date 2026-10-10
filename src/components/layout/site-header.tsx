@@ -12,7 +12,7 @@ export function SiteHeader() {
       <Container className="flex h-20 max-w-none items-center justify-between gap-4">
         <Logo />
 
-        <nav aria-label="Primary" className="hidden lg:block">
+        <nav aria-label="Primary" className="ml-auto hidden lg:block">
           <MegaMenu items={primaryNav} />
         </nav>
 

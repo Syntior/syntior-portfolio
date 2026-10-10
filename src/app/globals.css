@@ -13,6 +13,7 @@
     Menlo, Consolas, monospace;
   --font-heading: var(--font-sans);
   --font-brand: var(--font-outfit), var(--font-sans);
+  --font-logo: var(--font-outfit), var(--font-sans);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -145,6 +146,15 @@
     );
   }
 
+
+  /* Hero background slideshow (components/sections/hero.tsx). The first photo
+     sits still underneath; the other three fade in over it one after another,
+     each holding for 5 of the 20 seconds, so a new photo shows every 5s. */
+  .hero-slide {
+    opacity: 0;
+    animation: hero-slide 20s ease-in-out infinite;
+  }
+
   .caret {
     display: inline-block;
     width: 0.55em;
@@ -223,6 +233,20 @@
   }
 }
 
+@keyframes hero-slide {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  5%,
+  25% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+}
+
 @keyframes caret-blink {
   0%,
   50% {
@@ -236,9 +260,11 @@
 
 @media (prefers-reduced-motion: reduce) {
   .caret,
-  .text-flow {
+  .text-flow,
+  .hero-slide {
     animation: none;
   }
+
 
   /* Tech-stack rows stand still and wrap; the duplicate copy is dropped. */
   .marquee {

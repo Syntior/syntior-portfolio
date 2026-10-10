@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/layout/section-heading";
 import { Hero } from "@/components/sections/hero";
 import { ContactCta } from "@/components/sections/contact-cta";
 import { DiscussCta } from "@/components/sections/discuss-cta";
+import { HomeFaq } from "@/components/sections/home-faq";
 import { DisciplinesGrid } from "@/components/sections/disciplines-grid";
 import { TechStack } from "@/components/sections/tech-stack";
 import { WhyUs } from "@/components/sections/why-us";
@@ -70,6 +71,8 @@ export default function HomePage() {
           ))}
         </ul>
       </Section>
+
+      <HomeFaq />
 
       <ContactCta />
     </>
